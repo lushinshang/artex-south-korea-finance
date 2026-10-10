@@ -43,6 +43,7 @@ h1{font-size:clamp(26px,5.4vw,38px);line-height:1.35;font-weight:800;margin-bott
 .meta{margin-top:16px;font-size:14px;color:var(--sub)}
 main{max-width:var(--w);margin:0 auto;padding:8px 16px 96px}
 main h2{font-size:26px;line-height:1.4;margin:56px 0 14px;padding-top:8px;border-top:1px solid var(--line)}
+main h2,main h3{scroll-margin-top:64px}
 main h3{font-size:20px;line-height:1.45;margin:32px 0 8px}
 main p{margin:14px 0}
 main ul,main ol{margin:14px 0 14px 1.4em}
@@ -85,6 +86,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <a href="#兩台伺服器一套流程">兩台伺服器，一套流程</a>
 <a href="#攻擊者拿-ai-做了哪些事">攻擊者拿 AI 做了哪些事</a>
 <a href="#兩份報導的落差">兩份報導的落差</a>
+<a href="#用風險公式看這起事件">用風險公式看這起事件</a>
 <a href="#防守方可以做什麼">防守方可以做什麼</a>
 <a href="#該克制的地方">該克制的地方</a>
 <a href="#容易想歪的地方">容易想歪的地方</a>
@@ -193,8 +195,70 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </ul>
 <p><a target="_blank" rel="noopener noreferrer" href="https://www.koreatimes.co.kr/business/banking-finance/20261007/explainer-how-ai-emerged-as-new-threat-in-koreas-bank-hacking-crisis">高麗大學教授林宗仁</a>認為，這次「很可能」用了 AI，因為人類駭客要做到同樣的事，得花上數週甚至數月。不過他也提醒，不要因為發現是中文工具，就斷定是中國幹的。東國大學教授黃錫珍則形容，攻擊者是從窗戶進來的，不是走前門。</p>
 <figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/05-evidence-mobile.png"><img src="images/05-evidence.png" alt="確認到哪一步：CrowdStrike 依據攻擊者基礎設施與 session 紀錄，韓國報導稱使用 ARTEX 尚未獲官方確認，兩者證據層級不同" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<h2 id="用風險公式看這起事件">用風險公式看這起事件</h2>
+<p>先把講法校正一下。常聽到的「弱點 + 威脅 = 風險」只是口訣，不是標準裡的定義。</p>
+<ul>
+<li>依 <a target="_blank" rel="noopener noreferrer" href="https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-30r1.pdf">NIST SP 800-30 Rev.1</a>，風險通常是「衝擊」和「發生的可能性」兩者的函數。威脅和弱點決定事情有多可能發生；資產被傷到多重，決定衝擊有多大。口訣裡少了衝擊這一項。標準也沒有規定要相加或相乘，實際多用對照表或分級來合成。</li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://www.fairinstitute.org/hubfs/Standards%20Artifacts/Factor%20Analysis%20of%20Information%20Risk%20(FAIR)%20Standard%20v3.0%20(January%202025).pdf">FAIR 標準 3.0</a> 把風險定義成「未來損失的可能頻率與可能幅度」，並用「推導」的方式，由損失事件頻率和損失幅度算出，而不是簡單的加或乘。</li>
+<li>「暴露」在 <a target="_blank" rel="noopener noreferrer" href="https://csrc.nist.gov/glossary/term/exposure">NIST 詞彙表</a>裡指「承受某項風險的程度」。業界做「暴露管理」時，常拿它指「能被連到的弱點」，各家說法不一。本文用後面這個實務用法。</li>
+</ul>
+<p>拿這套講法對照這起事件：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的表格"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>項目</th>
+<th>這起事件的狀況</th>
+<th>出處</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>資產</strong></td>
+<td>客戶個資。新韓約 25,000 人，含姓名、聯絡方式、年收入、貸款額度</td>
+<td>Korea Times</td>
+</tr>
+<tr>
+<td><strong>暴露</strong>（能被連到的入口）</td>
+<td>對外開放的貸款查詢服務、員工行動辦公系統</td>
+<td>CrowdStrike、多家媒體</td>
+</tr>
+<tr>
+<td><strong>弱點</strong></td>
+<td>外圍系統的驗證比主系統弱</td>
+<td>專家說法，不是稽核結果</td>
+</tr>
+<tr>
+<td><strong>威脅</strong></td>
+<td>用 ARTEX 搭配 AI 模型、速度很快的行為者</td>
+<td>CrowdStrike</td>
+</tr>
+<tr>
+<td><strong>衝擊</strong></td>
+<td>主管機關擔心這些資料被拿去假冒貸款諮詢，做更像樣的詐騙</td>
+<td>京鄉新聞</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>那 AI 讓哪一項變大了？只有「威脅」，而且只是其中幾個部分。</strong></p>
+<ul>
+<li><strong>能力與成本變了。</strong> 英國 AISI 的評測顯示，開源模型落後閉源最前緣約 4 到 7 個月；跑同一類資安任務，<a target="_blank" rel="noopener noreferrer" href="https://www.aisi.gov.uk/blog/how-far-behind-the-frontier-are-leading-open-weight-models-on-cyber">DeepSeek V4-Pro 約 0.28 美元，閉源的 Opus 4.5 約 12.50 美元</a>。不過 AISI 測的是 V4-Pro，本案用的是 v4.1-flash，數字不能直接套。</li>
+<li><strong>速度與次數變了。</strong> CrowdStrike 的判斷是，AI 讓一個為了賺錢的人，能在短時間內完成多起入侵。京鄉轉述的主管機關看法，也是「到處試、哪家弱打哪家」。試探變便宜，次數就會變多，這是本文的推論。</li>
+<li><strong>動機沒有證據顯示改變。</strong> CrowdStrike 的判斷仍是為了賺錢。</li>
+</ul>
+<p>要提醒兩件事。第一，「威脅變大」的方向有證據，但變大多少沒有人量過，一個案例也推不出整體趨勢。第二，我們看到的都是被打穿的。《Korea Times》說友利、農協只偵測到嘗試，沒有確認外洩。它們和被打穿的機構差在哪，沒有資料可以比。</p>
+<p><strong>威脅你管不到，但另外三項你能動。</strong>（以下是本文的判斷）</p>
+<ul>
+<li><strong>降低暴露</strong>：清點對外的入口，不需要開放的就關掉，或收進內網。</li>
+<li><strong>降低弱點</strong>：外圍系統的驗證要追上核心，並加上次數限制。</li>
+<li><strong>降低衝擊</strong>：資料最小化。年收入、貸款額度這類資料，能不能不放在外圍系統碰得到的地方？</li>
+</ul>
 <h2 id="防守方可以做什麼">防守方可以做什麼</h2>
-<p><strong>以下是本文自己的判斷。</strong> CrowdStrike 的文章沒有寫怎麼偵測、怎麼防。</p>
+<p><strong>以下是本文自己的判斷。</strong> CrowdStrike 的文章沒有寫怎麼偵測、怎麼防。下面的做法，大多對應上一節的暴露、弱點與衝擊三項。</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的表格"><table>
 <colgroup>
 <col style="width: 50%" />
