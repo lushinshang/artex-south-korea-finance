@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>攻擊者的伺服器沒上鎖：ARTEX 與南韓金融業入侵事件</title>
+<meta name="description" content="CrowdStrike 從外露的開放目錄，看到 AI 代理如何加快一個牟利型行為者的攻擊節奏">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23a8321f'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#f7f6f3;--card:#fff;--text:#1d1d1f;--sub:#5b5b60;--accent:#a8321f;--soft:#fbeeea;--line:#e3dfd7;--code:#efece5;--w:720px}
+@media (prefers-color-scheme:dark){:root{--bg:#16171a;--card:#1f2024;--text:#ececee;--sub:#a3a3aa;--accent:#ff8a73;--soft:#2a1e1b;--line:#33343a;--code:#26272c}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--text);font:17px/1.85 "Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:8px 14px;z-index:200}
+.skip:focus{left:8px;top:8px}
+nav.top{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;gap:18px;align-items:center;overflow-x:auto;white-space:nowrap}
+nav.top b{font-size:14px;color:var(--text)}
+nav.top a{font-size:14px;color:var(--sub);text-decoration:none;padding:6px 2px}
+nav.top a:hover,nav.top a:focus-visible{color:var(--accent)}
+header.hero{max-width:var(--w);margin:0 auto;padding:56px 16px 20px}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.5px;color:var(--accent);background:var(--soft);padding:3px 10px;border-radius:4px;margin-bottom:16px}
+h1{font-size:clamp(26px,5.4vw,38px);line-height:1.35;font-weight:800;margin-bottom:12px}
+.sub{color:var(--sub);font-size:18px;line-height:1.6}
+.meta{margin-top:16px;font-size:14px;color:var(--sub)}
+main{max-width:var(--w);margin:0 auto;padding:8px 16px 96px}
+main h2{font-size:26px;line-height:1.4;margin:56px 0 14px;padding-top:8px;border-top:1px solid var(--line)}
+main h3{font-size:20px;line-height:1.45;margin:32px 0 8px}
+main p{margin:14px 0}
+main ul,main ol{margin:14px 0 14px 1.4em}
+main li{margin:6px 0}
+main a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}
+main strong{font-weight:700}
+code{background:var(--code);padding:1px 6px;border-radius:4px;font-size:.92em;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.table-wrap:focus-visible{outline:2px solid var(--accent)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;line-height:1.65}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--soft);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+pre.mermaid{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:24px 0;overflow-x:auto;font:13px/1.5 ui-monospace,Menlo,monospace;text-align:center;white-space:pre}
+pre.mermaid[data-processed]{white-space:normal}
+pre.mermaid svg{max-width:none;height:auto;min-width:640px}
+@media (min-width:760px){pre.mermaid svg{min-width:0;max-width:100%}}
+pre.mermaid:focus-visible{outline:2px solid var(--accent)}
+figure{margin:28px 0}
+figure img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid var(--line);cursor:zoom-in}
+figure.summary-figure img{box-shadow:0 6px 24px rgba(0,0,0,.08)}
+figure.hero-figure{max-width:var(--w);margin:24px auto 0;padding:0 16px}
+figure.hero-figure img{cursor:default;border:0}
+img:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:640px){figure img{aspect-ratio:9/16;max-width:360px;margin:0 auto}}
+details.alt-diagram{margin:16px 0}
+details.alt-diagram summary{cursor:pointer;color:var(--sub);font-size:14px;padding:6px 0}
+.lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(20,20,22,.9);align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;aspect-ratio:auto;border-radius:8px;border:0;cursor:zoom-out}
+.lightbox .hint{position:absolute;top:16px;right:20px;color:rgba(255,255,255,.8);font-size:14px}
+footer{max-width:var(--w);margin:0 auto;padding:0 16px 56px;color:var(--sub);font-size:14px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">跳到內文</a>
+<nav class="top" aria-label="章節導覽"><div class="in"><b>ARTEX 導讀</b>
+<a href="#先把事實排好">先把事實排好</a>
+<a href="#兩台伺服器一套流程">兩台伺服器，一套流程</a>
+<a href="#攻擊者拿-ai-做了哪些事">攻擊者拿 AI 做了哪些事</a>
+<a href="#兩份報導的落差">兩份報導的落差</a>
+<a href="#這些資訊能轉成什麼防禦動作">這些資訊能轉成什麼防禦動作</a>
+<a href="#該克制的地方">該克制的地方</a>
+<a href="#容易想歪的地方">容易想歪的地方</a>
+<a href="#帶走的問題">帶走的問題</a>
+<a href="#來源">來源</a>
+</div></nav>
+<header class="hero">
+<span class="tag">威脅情資導讀 · 2026-10-10</span>
+<h1>攻擊者的伺服器沒上鎖：ARTEX 與南韓金融業入侵事件</h1>
+<p class="sub">CrowdStrike 從外露的開放目錄，看到 AI 代理如何加快一個牟利型行為者的攻擊節奏</p>
+<p class="meta">依據 CrowdStrike 2026-10-07 分析與多家媒體報導整理。攻防建議為本文推論。</p>
+</header>
+<figure class="hero-figure"><picture><source media="(max-width: 640px)" srcset="images/07-cover-mobile.png"><img src="images/07-cover.png" alt="" role="presentation" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+
+<main id="content">
+<p>威脅情資報告通常從受害端倒推攻擊者的行為。這一篇多了一份攻擊者自己的檔案：2026 年 10 月 7 日，CrowdStrike 發布<a target="_blank" rel="noopener noreferrer" href="https://www.crowdstrike.com/en-us/blog/unknown-threat-actor-uses-artex-to-target-south-korean-finance/">這篇分析</a>，他們在攻擊者控制的開放目錄裡找到 Claude Code 的 session 歷史、ARTEX 的設定檔，以及 Claude 的記憶檔。</p>
+<p>本文談三件事：這起事件發生了什麼、攻擊者拿 AI 做了哪些事，以及防守方能拿走什麼。</p>
+<figure class="summary-figure"><picture><source media="(max-width: 640px)" srcset="images/01-summary-mobile.png"><img src="images/01-summary.png" alt="一圖看懂：ARTEX 入侵南韓金融業，五張卡片依序是時間、工具、架構、AI 用法與待確認事項" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<h2 id="先把事實排好">先把事實排好</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的表格"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>項目</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間</td>
+<td>2026 年 9 月下旬到 10 月初</td>
+</tr>
+<tr>
+<td>目標</td>
+<td>南韓金融機構，結果是資料外洩</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>ARTEX：開源、以 LLM 驅動的 agentic 滲透測試工具，CrowdStrike 稱其由中國開發</td>
+</tr>
+<tr>
+<td>主要 LLM</td>
+<td>DeepSeek v4.1-flash；部分 Claude Code session 另用 GLM-5.3（智譜 AI）與 Grok 4.6</td>
+</tr>
+<tr>
+<td>歸因</td>
+<td>未歸屬任何已命名的組織；CrowdStrike 以中等信心判斷是說中文、以牟利為動機的行為者</td>
+</tr>
+<tr>
+<td>受害範圍</td>
+<td>CrowdStrike 寫明受影響機構數量「尚未確認」</td>
+</tr>
+</tbody>
+</table></div>
+<p>歸因那列要多看一眼。「中等信心」的依據只有兩項：用了中國開發的工具，以及觀察到中文提示詞。兩項都稱不上硬證據，所以本文不會把它寫成國家或組織層級的結論。</p>
+<h3 id="時間線">時間線</h3>
+<p>韓國這邊的日期來自<a target="_blank" rel="noopener noreferrer" href="https://www.khan.co.kr/en/article/202610042320007">《京鄉新聞》</a>的報導，也就是 CrowdStrike 引用的「業界報導」。</p>
+<ul>
+<li><strong>7 月 26 日</strong>：ARTEX 在 GitHub 上公開（據京鄉新聞）。</li>
+<li><strong>9 月 24 日</strong>：ARTEX 發布最新版本（同上）。</li>
+<li><strong>9 月 27 日至 30 日</strong>：多家南韓金融機構遭入侵（同上，區間是該報導對所列機構的說法）。</li>
+<li><strong>約 10 月 4 日</strong>：韓國金融委員會召開金融業緊急檢查會議（同上）。</li>
+<li><strong>10 月 7 日</strong>：CrowdStrike 發布分析。</li>
+</ul>
+<p>ARTEX 公開約兩個月後，出現在這波攻擊裡。京鄉說國民銀行的攻擊在新版發布三天後開始，但攻擊者用的是不是新版，兩份文件都沒說。</p>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/02-timeline-mobile.png"><img src="images/02-timeline.png" alt="事件時間線：7 月 26 日 ARTEX 公開，9 月 24 日發布新版，9 月 27 至 30 日多家金融機構遭入侵，約 10 月 4 日金融委員會召開緊急會議，10 月 7 日 CrowdStrike 發布分析" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<h2 id="兩台伺服器一套流程">兩台伺服器，一套流程</h2>
+<p>Claude Code 的 session 紀錄顯示攻擊者用了兩段式架構。圖中實線是 CrowdStrike 的直接描述，虛線是原文用「likely」表達或未明說的部分：</p>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/03-architecture-mobile.png"><img src="images/03-architecture.png" alt="架構圖：香港 IP 為主要控制端，連到 ARTEX 實例，再連到 DeepSeek；xcai.pro、九個 proxy IP、GLM 與 Grok 以虛線表示為推測" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<details class="alt-diagram"><summary>檢視可互動的文字版架構圖</summary><pre class="mermaid" tabindex="0" role="img" aria-label="攻擊者基礎設施架構圖：香港 IP 控制 ARTEX 實例，ARTEX 使用 DeepSeek 等 LLM 並經 proxy IP 連向南韓金融機構">flowchart TD
+    A[&quot;香港 IP&lt;br/&gt;主要攻擊者控制端&quot;] --&gt; B[&quot;38.244.50.120&lt;br/&gt;ARTEX 實例&lt;br/&gt;（很可能是南韓攻擊的來源）&quot;]
+    B --&gt; D[&quot;DeepSeek v4.1-flash&lt;br/&gt;（主要 LLM）&quot;]
+    B -.很可能經由.-&gt; C[&quot;xcai.pro&lt;br/&gt;疑似 API 代理／轉售商&quot;]
+    C -.-&gt; D
+    A -.另有 session.-&gt; E[&quot;GLM-5.3 / Grok 4.6&lt;br/&gt;（額外的 Claude Code session）&quot;]
+    B -.活動期間使用.-&gt; P[&quot;九個 proxy IP&quot;]
+    P -.-&gt; F[&quot;南韓金融機構&quot;]
+    A -.開放目錄外露.-&gt; G[&quot;session 歷史&lt;br/&gt;ARTEX 設定檔&lt;br/&gt;記憶檔&quot;]</pre></details>
+<p><strong>18899 埠上的 <code>.claude/CLAUDE.md</code>，用 HTTP 就能讀。</strong> CrowdStrike 提到的九個 proxy IP 是攻擊者在 ARTEX 相關活動期間用過的，自己這一側卻是開著的。</p>
+<p><strong>CLAUDE.md 裡是一份中文的滲透測試提示詞</strong>，規定 LLM 該怎麼進行滲透測試。ARTEX 的實際能力，CrowdStrike 沒有逐項拆解，本文也不替它補寫。</p>
+<p><strong>DeepSeek 很可能是透過轉售商取得。</strong> CrowdStrike 認為攻擊者「可能」透過 <code>xcai[.]pro</code> 存取 DeepSeek，而這個 <code>xcai[.]pro</code> 本身也只是「疑似」API 代理或轉售商，兩層都是推測。</p>
+<h2 id="攻擊者拿-ai-做了哪些事">攻擊者拿 AI 做了哪些事</h2>
+<p>文章點出的用法不只入侵本身：</p>
+<ol type="1">
+<li><strong>執行入侵</strong>：ARTEX 搭配 LLM，在 2026 年 9 月下旬到 10 月初對南韓金融機構展開大量活動。</li>
+<li><strong>打聽變現管道</strong>：在 Claude Code session 裡問 Claude，這類韓國外洩資料通常在哪裡販售，並請它協助找韓文的 Telegram 資料販售群組。原文只說「問」，沒說賣了。</li>
+<li><strong>請 Claude 寫履歷</strong>：要求它寫一份資安研究員履歷，把這次 ARTEX 相關活動的成果寫成條列。</li>
+</ol>
+<p>入侵靠的是 ARTEX 加 DeepSeek，另外兩件事則是在 Claude Code 裡問 Claude。這些紀錄出現在同一批檔案裡，但 CrowdStrike 沒說它們都出自同一個人。它的結論只針對速度：AI 讓牟利型行為者能在短時間內完成多起入侵。</p>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/04-ai-usage-mobile.png"><img src="images/04-ai-usage.png" alt="攻擊者拿 AI 做了哪些事：執行入侵、打聽變現管道、請 Claude 寫履歷；CrowdStrike 的結論只針對速度" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<h2 id="兩份報導的落差">兩份報導的落差</h2>
+<p>CrowdStrike 稱這是針對南韓金融業的活動。據京鄉新聞，南韓主管機關的看法是：AI 在對許多業者隨機探測，防護較弱的才被打穿，並非針對特定對象。</p>
+<p>兩者問的層次不同。CrowdStrike 的「針對」指鎖定金融業這個產業，京鄉的「隨機」指手法是廣泛探測，並不衝突。對防守方來說，兩個問法都該問：我是不是被盯上，以及我是不是比鄰居更好打。</p>
+<p>受害系統的樣子也支持後一個問法。CrowdStrike 舉了兩例：貸款仲介使用的貸款進度查詢服務，以及銀行員工的行動辦公系統。據京鄉，另有其他機構外洩，並引述資安業者說這類外圍系統缺少主系統那層驗證；確切數量，兩份文件都沒有定論。</p>
+<h3 id="確認到哪一步各家說法不一樣">確認到哪一步，各家說法不一樣</h3>
+<p>其他媒體的說法，補了三個 CrowdStrike 文章沒有的角度。</p>
+<ul>
+<li><strong>使用 ARTEX 這件事，韓國官方尚未確認。</strong> 《Korea Times》在 10 月 7 日的解析裡仍用「據報導」。彙整 Yonhap 報導的 <a target="_blank" rel="noopener noreferrer" href="https://runtimewire.com/article/south-korea-bank-breaches-artex-ai-probe">RuntimeWire</a> 寫到，新韓事件的某台伺服器出現 ARTEX 相關的頁面標題，但實際使用未獲驗證。CrowdStrike 的依據是它拿到的攻擊者基礎設施與 session 紀錄，兩邊證據的層級不同，讀的時候要分開。</li>
+<li><strong>ARTEX 本身並不稀有。</strong> 據 RuntimeWire，AhnLab 觀察到全球約 600 個 IP 在跑 ARTEX，但這只是託管數，不代表每台都被拿去攻擊。這個數字的出處各家不一，Arirang 的報導說是 S2W。單憑工具痕跡或字串，不足以歸因。</li>
+<li><strong>受害人數的總計有出入。</strong> WSJ 約 68,000 人，《Korea Times》逾 67,000 人（皆經 RuntimeWire 轉述）。分開看，新韓約 25,000 人、國民 119 人、哈納 89 人。</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer" href="https://www.koreatimes.co.kr/business/banking-finance/20261007/explainer-how-ai-emerged-as-new-threat-in-koreas-bank-hacking-crisis">高麗大學教授林宗仁</a>認為這次「很可能」用了 AI，因為人類駭客要花數週甚至數月；但他也提醒，不要因為發現中文工具就斷定是中國所為。東國大學教授黃錫珍則形容，攻擊者是從窗戶而不是前門進來。</p>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/05-evidence-mobile.png"><img src="images/05-evidence.png" alt="確認到哪一步：CrowdStrike 依據攻擊者基礎設施與 session 紀錄，韓國報導稱使用 ARTEX 尚未獲官方確認，兩者證據層級不同" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<h2 id="這些資訊能轉成什麼防禦動作">這些資訊能轉成什麼防禦動作</h2>
+<p><strong>以下是本文的判斷。</strong> CrowdStrike 的文章沒有寫偵測或緩解建議。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的表格"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>視角</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>偵測</strong></td>
+<td>把 IOC 表的十個 IP，以及內文提到的 <code>xcai[.]pro</code>，丟進 SIEM 做回溯查詢；另外看有沒有來源在短時間內出現節奏均勻、規模很大的探測</td>
+</tr>
+<tr>
+<td><strong>防禦</strong></td>
+<td>優先盤點對外開放的外圍系統，例如仲介入口、行動辦公後台，確認驗證強度不輸主系統；對自動化探測加速率限制與異常行為分析</td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td>外圍系統與第三方入口列入風險評級；縮短修補與暴露面收斂的週期，因為對手的節奏變快了</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="section-figure"><picture><source media="(max-width: 640px)" srcset="images/06-defense-mobile.png"><img src="images/06-defense.png" alt="防守方可以做什麼（本文判斷）：偵測、防禦、治理三欄要點" loading="lazy" decoding="async" tabindex="0"></picture></figure>
+<p><strong>以下回到原文。</strong> CrowdStrike 列出三項 MITRE ATT&amp;CK 技術，全都在資源開發與指揮控制階段：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的表格"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>戰術</th>
+<th>技術</th>
+<th>文章中的說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Resource Development</td>
+<td>T1583.003 取得基礎設施：VPS</td>
+<td>在多個 IP 取得基礎設施，建立指揮控制</td>
+</tr>
+<tr>
+<td>Resource Development</td>
+<td>T1588.007 取得能力：人工智慧</td>
+<td>取得並部署 ARTEX</td>
+</tr>
+<tr>
+<td>Command and Control</td>
+<td>T1090 代理</td>
+<td>使用多個代理 IP</td>
+</tr>
+</tbody>
+</table></div>
+<p>入侵過程本身怎麼進去、怎麼橫向移動，這份報告沒有覆蓋。拿 ATT&amp;CK 對照自己的偵測覆蓋率時，這三格只是一小塊。</p>
+<p>IOC 表只有十個 IP（九個 proxy，加上 <code>38.244.50[.]120</code>），沒有域名，也沒有檔案雜湊。<code>xcai[.]pro</code> 只出現在內文。本文判斷，代理 IP 通常很快就會換，這份清單比較適合拿來回溯，不適合當長期防線。</p>
+<h2 id="該克制的地方">該克制的地方</h2>
+<p>CrowdStrike 在 Assessment 之前列了一名疑似攻擊者的個人資料，包含姓名、電話、Telegram 帳號、年齡、學歷與居住地，來自履歷請求的提示詞。同一個 Telegram 帳號也出現在其他 session。</p>
+<p>CrowdStrike 認為這些資料「很可能」屬於這次活動的行為者，但也寫明，現有資訊無法確定關聯。把一個尚未確認的連結變成一個具體的人，風險落在被指認的人身上，而防守方要做的事用不到這些資料，所以本文不轉載。</p>
+<p>後續的電視新聞已經出現相反的做法：有報導把這條線索直接寫進標題，變成對特定年齡與國籍之嫌疑人的指稱。CrowdStrike 原文用的是「很可能」加上「無法確定」，標題裡這兩個限定詞都不見了。</p>
+<h2 id="容易想歪的地方">容易想歪的地方</h2>
+<p><strong>「這是某國家的行動」。</strong> 文章的歸因停在「可能說中文、可能為了錢」，並明說未歸屬任何組織。工具由哪裡開發，也不等於使用者是誰。</p>
+<p><strong>「這是全新的攻擊手法」。</strong> 本文判斷這份報告談的主要是速度。CrowdStrike 的說法是對手的 tradecraft 持續演進，並預期對手會繼續試驗 AI 以提升作業節奏與能力；它沒有說出現了新的攻擊技術。</p>
+<p><strong>「封鎖一家模型的帳號就夠了」。</strong> 本文判斷這行不通：攻擊者用了 DeepSeek 為主，其他 session 又補用 GLM 與 Grok，若又經轉售商取用，單點封鎖的效果有限。</p>
+<h2 id="帶走的問題">帶走的問題</h2>
+<ol type="1">
+<li>你的外圍系統，和那個被打穿的貸款查詢服務相比，驗證強度差多少？</li>
+<li>如果對手的探測速度提高一個量級，你的偵測與修補週期撐得住嗎？</li>
+<li>（本文延伸，原文未提）你能不能從自己的對外連線裡，看出有人在使用沒經過核准的 LLM API？</li>
+</ol>
+<h2 id="來源">來源</h2>
+<ul>
+<li>CrowdStrike，〈<a target="_blank" rel="noopener noreferrer" href="https://www.crowdstrike.com/en-us/blog/unknown-threat-actor-uses-artex-to-target-south-korean-finance/">Unknown Threat Actor Uses AI-Driven ARTEX to Target South Korean Finance</a>〉，2026-10-07。第一手分析，也是本文事實骨架（IP、基礎設施、模型、ATT&amp;CK）的來源。</li>
+<li>Kim Sang-Beom，〈<a target="_blank" rel="noopener noreferrer" href="https://www.khan.co.kr/en/article/202610042320007">The Korean financial sector was breached by a two-month-old Chinese AI</a>〉，《京鄉新聞》，2026-10-04 發布、10-06 更新。ARTEX 發布日、時間線與主管機關看法出自此文，屬二手媒體來源；CrowdStrike 文章的註腳 1 指向這篇。</li>
+<li>〈<a target="_blank" rel="noopener noreferrer" href="https://www.koreatimes.co.kr/business/banking-finance/20261007/explainer-how-ai-emerged-as-new-threat-in-koreas-bank-hacking-crisis">EXPLAINER How AI emerged as new threat in Korea's bank hacking crisis</a>〉，《Korea Times》，2026-10-07。二手媒體；受害人數與專家評論出自此文。</li>
+<li>〈<a target="_blank" rel="noopener noreferrer" href="https://runtimewire.com/article/south-korea-bank-breaches-artex-ai-probe">AhnLab finds ARTEX on 600 IPs as police probe South Korean bank breaches</a>〉，RuntimeWire，2026-10-06。彙整稿，轉述 Yonhap、WSJ、Korea Times 與 AhnLab 的說法；600 個 IP 與使用未確認的描述出自此文，屬二手之二手來源。</li>
+<li>〈<a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=j380lPqoGl8">AI-powered hacking targets Korean banks</a>〉，Arirang News（YouTube），2026-10-08。電視新聞；本文用它說明媒體如何放大個資線索。</li>
+</ul>
+
+</main>
+<footer>本頁為導讀整理，非 CrowdStrike 官方內容。IOC 以原文為準，使用前請自行核對。</footer>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片放大檢視" tabindex="-1"><span class="hint">點擊或按 Esc 關閉</span><img src="" alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById("lightbox"),li=lb.querySelector("img"),last=null;
+  function open(img){last=img;li.src=img.currentSrc||img.src;li.alt=img.alt;lb.classList.add("open");lb.focus();}
+  function close(){lb.classList.remove("open");li.src="";if(last)last.focus();}
+  document.querySelectorAll("figure.section-figure img,figure.summary-figure img").forEach(function(img){
+    img.addEventListener("click",function(){open(img);});
+    img.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open(img);}});
+  });
+  lb.addEventListener("click",close);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&lb.classList.contains("open"))close();});
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js" integrity="sha384-WmdflGW9aGfoBdHc4rRyWzYuAjEmDwMdGdiPNacbwfGKxBW/SO6guzuQ76qjnSlr" crossorigin="anonymous"></script>
+<script>
+(function(){
+  if(!window.mermaid)return;
+  var dark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({startOnLoad:false,theme:dark?"dark":"neutral",flowchart:{htmlLabels:true,useMaxWidth:true}});
+  var open=[],hidden=[];
+  document.querySelectorAll("pre.mermaid").forEach(function(n){(n.closest("details")?hidden:open).push(n);});
+  if(open.length)mermaid.run({nodes:open});
+  document.querySelectorAll("details.alt-diagram").forEach(function(d){
+    d.addEventListener("toggle",function(){
+      var n=d.querySelector("pre.mermaid");
+      if(d.open&&n&&!n.dataset.processed)mermaid.run({nodes:[n]});
+    });
+  });
+})();
+</script>
+</body>
+</html>
